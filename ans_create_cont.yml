@@ -1,0 +1,24 @@
+---
+- name: Example
+  hosts: localhost
+  become: no
+          
+  tasks:
+    - name: Start compose to build image application
+      docker_compose:
+        project_name: build_application
+        definition:
+          version: "3.8"
+          services:
+            application:
+              stdin_open: true
+              tty: true
+              build:
+                context: ./application
+                dockerfile: Dockerfile
+              container_name: application
+              volumes:
+                - ./logs:/logs
+              ports:
+                - 8000:8000
+              command: python3 app.py
