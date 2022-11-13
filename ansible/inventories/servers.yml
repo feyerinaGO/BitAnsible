@@ -1,0 +1,9 @@
+all:
+  hosts:
+    # name_server_mfti:
+    #   ansible_host: "93.175.29.166"
+    #   ansible_ssh_user: "ssh tpo2022035@environ01.atp-fivt.org"
+    #   ansible_ssh_pass: "W7zAIsejSR5RoK8V4mrR"
+    name_server_local:
+      ansible_host: "127.0.0.1"
+      ansible_connection: "local"

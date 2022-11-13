@@ -1,0 +1,21 @@
+version: '3.9'
+
+services:
+  application:
+    build:
+      context: ./application
+      dockerfile: Dockerfile
+    image: testapp
+    container_name: application
+    ports:
+      - 8000:8000
+    volumes:
+      - ./application:/application
+  ansible_host:
+    build:
+      context: ./
+      dockerfile: dockerfile
+    command: ansible-playbook docker_playbook.yml -i inventories/servers.yml
+    volumes:
+      - /var/run/docker.sock://var/run/docker.sock
+      - ./application:/application
